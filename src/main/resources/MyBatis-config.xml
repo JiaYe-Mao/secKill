@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!--自增主键-->
+        <setting name="useGeneratedKeys" value="true"/>
+        <!--开启列名转换(自动识别列别名来做映射)-->
+        <setting name="useColumnLabel" value="true"/>
+        <!--映射名称转换(create_time -> createTime)-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+</configuration>
