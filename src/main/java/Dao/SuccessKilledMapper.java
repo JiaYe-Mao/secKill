@@ -4,7 +4,7 @@ package Dao;
 import entity.SuccessKilled;
 import org.apache.ibatis.annotations.Param;
 
-public interface SuccessKilledDao {
+public interface SuccessKilledMapper {
 
     /**
      * 插入一行购买明细, 可过滤重复

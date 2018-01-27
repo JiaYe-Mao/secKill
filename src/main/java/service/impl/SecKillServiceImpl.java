@@ -1,7 +1,7 @@
 package service.impl;
 
-import Dao.SecKillDao;
-import Dao.SuccessKilledDao;
+import Dao.SecKillMapper;
+import Dao.SuccessKilledMapper;
 import Dto.Exposer;
 import Dto.SecKillExecution;
 import entity.SecKill;
@@ -27,21 +27,21 @@ public class SecKillServiceImpl implements SecKillService{
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private SecKillDao secKillDao;
+    private SecKillMapper secKillMapper;
 
     @Autowired
-    private SuccessKilledDao successKilledDao;
+    private SuccessKilledMapper successKilledMapper;
 
     private final String salt = "sdljfo23o58$ut0-991kgkdl3$%#$nbv09801*%^$";
 
     @Override
     public List<SecKill> getSecKillList() {
-        return secKillDao.queryAll(0,4);
+        return secKillMapper.queryAll(0,4);
     }
 
     @Override
     public SecKill getSecKillById(long secKillId) {
-        return secKillDao.queryById(secKillId);
+        return secKillMapper.queryById(secKillId);
     }
 
     @Override
@@ -75,15 +75,15 @@ public class SecKillServiceImpl implements SecKillService{
             throw new SecKillException("secKill data rewrite!");
         }
         try {
-            int updateCount = secKillDao.reduceNumber(secKillId, new Date());
+            int updateCount = secKillMapper.reduceNumber(secKillId, new Date());
             if (updateCount <= 0){
                 throw new SecKillCloseException("secKill closed");
             }
-            int insertCount = successKilledDao.insertSuccessKilled(secKillId, phoneNumber);
+            int insertCount = successKilledMapper.insertSuccessKilled(secKillId, phoneNumber);
             if (insertCount <= 0){
                 throw new RepeatKilledException("secKill repeated");
             }
-            SuccessKilled successKilled = successKilledDao.queryByIdWithGoodsDetails(secKillId, phoneNumber);
+            SuccessKilled successKilled = successKilledMapper.queryByIdWithGoodsDetails(secKillId, phoneNumber);
             return new SecKillExecution(secKillId, SecKillStateEnum.SUCCESS, successKilled);
         } catch (RepeatKilledException e1){
             throw e1;

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Dao.SuccessKilledDao">
+<mapper namespace="Dao.SuccessKilledMapper">
     <insert id="insertSuccessKilled">
         INSERT ignore INTO success_killed (secKill_id, phoneNumber,state)
         VALUES (#{secKilledId}, #{phoneNumber},0)

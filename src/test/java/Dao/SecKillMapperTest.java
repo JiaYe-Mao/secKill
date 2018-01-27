@@ -13,31 +13,31 @@ import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:spring/spring-dao.xml"})
-public class SecKillDaoTest {
+public class SecKillMapperTest {
 
     @Autowired
-    SecKillDao secKillDao;
+    SecKillMapper secKillMapper;
 
     @Test
     public void reduceNumber() {
         Calendar calendar =  new Calendar.Builder().build();
         calendar.set(2018,0,11,2,3);
         Date date = calendar.getTime();
-        int result = secKillDao.reduceNumber(1000L, date);
+        int result = secKillMapper.reduceNumber(1000L, date);
         System.out.println("result: " + result);
     }
 
     @Test
     public void queryById() {
         long id = 1000;
-        SecKill secKill = secKillDao.queryById(id);
+        SecKill secKill = secKillMapper.queryById(id);
         System.out.println(secKill.getName());
         System.out.println(secKill);
     }
 
     @Test
     public void queryAll() {
-        List<SecKill> list = secKillDao.queryAll(1,100);
+        List<SecKill> list = secKillMapper.queryAll(1,100);
         for (SecKill secKill : list){
             System.out.println(secKill);
         }

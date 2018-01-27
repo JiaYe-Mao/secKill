@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Date;
 import java.util.List;
 
-public interface SecKillDao {
+public interface SecKillMapper {
 
     /**
      * 减库存(GoodsNumber)

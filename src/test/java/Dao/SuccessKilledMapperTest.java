@@ -7,25 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.*;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/spring-dao.xml")
-public class SuccessKilledDaoTest {
+public class SuccessKilledMapperTest {
 
     @Autowired
-    SuccessKilledDao successKilledDao;
+    SuccessKilledMapper successKilledMapper;
 
     @Test
     public void insertSuccessKilled() {
 
-        int result = successKilledDao.insertSuccessKilled(1001L, 12345678L);
+        int result = successKilledMapper.insertSuccessKilled(1001L, 12345678L);
         System.out.println("result: "+ result);
     }
 
     @Test
     public void queryByIdWithGoodsDetails() {
-        SuccessKilled successKilled = successKilledDao.queryByIdWithGoodsDetails(1001L, 12345678L);
+        SuccessKilled successKilled = successKilledMapper.queryByIdWithGoodsDetails(1001L, 12345678L);
         System.out.println(successKilled);
         System.out.println(successKilled.getSecKill());
     }
